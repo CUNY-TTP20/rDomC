@@ -5,10 +5,10 @@ function App() {
   return (
     <div className="App">
       <ColorSelector
-        Red="20"
-        Green="100"
-        Blue="20"
-        Alpha="23"
+        Red="0"
+        Green="0"
+        Blue="0"
+        Alpha="1"
       />
     </div>
   );
