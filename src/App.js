@@ -1,15 +1,13 @@
 import React from 'react';
-import ColorSelector from "./Components/colorSelector";
-
+// import ColorSelector from "./Components/colorSelector";
+import MainPanel from "./Components/mainPanel";
+// import Table from "./Components/table";
 function App() {
+
   return (
-    <div className="App">
-      <ColorSelector
-        Red="0"
-        Green="0"
-        Blue="0"
-        Alpha="1"
-      />
+    <div>
+      <MainPanel />
+
     </div>
   );
 }

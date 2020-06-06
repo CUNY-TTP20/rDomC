@@ -20,23 +20,26 @@
     text-align: center;
     padding-top:20px;
     padding-bottom:20px;
-    position:relative;
+    /* position:relative; */
     height: max-content;
     width:20vw;
-    display:inline-block;
+    /* display:inline-block; */
     border-style: ridge;
     border-radius: 3%;
 }
-.mainDiv table{
+.Acolor{
     position:relative;
     left:4vw;
 }
-.mainDiv th,td{
-
+.Acolor th,td{
+  width: 8px;
+  height:20px;
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+  background-color: inherit;
+  color:inherit;
 }
-.mainDiv tr:nth-child(odd){
+.Acolor tr:nth-child(odd){
     background-color:rgba(128,128,128,0.1);
 }

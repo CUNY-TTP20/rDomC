@@ -13,7 +13,7 @@ class ColorSelector extends Component {
   }
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.onChange(this.state.red,this.state.green,this.state.blue,this.state.alpha);
+    this.props.onSubmit(this.state.red,this.state.green,this.state.blue,this.state.alpha);
   }
   handleChange = (event) => {
     const value = event.target.value;
@@ -49,7 +49,7 @@ class ColorSelector extends Component {
     return (
       <div className={classes.mainDiv} style={{
         background: `rgba(${rato},${hariyo},${nilo},${aleph})`,
-        color: `rgba(${255-rato},${255-hariyo},${255-nilo},${aleph})`
+        color: `rgba(${255-rato},${255-hariyo},${255-nilo},1)`
       }}> 
         <h1> Color Selector</h1>
         <div className={classes.sliderDiv}>
@@ -107,7 +107,7 @@ class ColorSelector extends Component {
           </form>
         </div>
         <h4>Some Basic Color Value</h4>
-        <table>
+        <table className={classes.Acolor}>
           <tr>
             <th>Color</th>
             <th>Values</th>

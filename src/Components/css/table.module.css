@@ -1,0 +1,25 @@
+.Div {
+  padding-top: 30px;
+  padding-bottom: 20px;  
+  height: 80vh;
+  width: 80vw;
+  overflow: scroll;
+  display: inline-block;
+  border-style: ridge;
+  border-radius: 3%;
+}
+.Div table {
+  position: relative;
+  left: 4vw;
+  background-color: white;
+}
+.tdName {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  border-style: ridge;
+  text-align: left;
+  border-radius: 10%;  
+   border-width: 5px;
+}
+
