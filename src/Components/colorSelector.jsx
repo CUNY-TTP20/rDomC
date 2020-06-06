@@ -11,25 +11,49 @@ class ColorSelector extends Component {
       alpha: this.props.Alpha,
     };
   }
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.props.onChange(this.state.red,this.state.green,this.state.blue,this.state.alpha);
+  }
   handleChange = (event) => {
     const value = event.target.value;
     this.setState({
       ...this.state,
       [event.target.name]: value,
     });
+ 
   };
-    render() {
-        let rato = this.state.red;
-        let hariyo = this.state.green;
-        let nilo = this.state.blue;
-        let aleph = this.state.alpha;
+  render() {
+    let rato = this.state.red;
+    let hariyo = this.state.green;
+    let nilo = this.state.blue;
+    let aleph = this.state.alpha;
+    let colors = [
+      { color: "black", value: "rgb(0, 0, 0)" },
+      { color: "white", value:" rgb(255,255,255)" },
+      { color: "red", value: "rgb(255, 0, 0)" },
+      { color:" green", value: "rgb(0, 0, 0)" },
+      { color:" blue", value: "rgb(0, 0, 0)" },
+      { color: "yellow", value: "rgb(0, 0, 0)" },
+      { color: "purple", value: "rgb(0, 0, 0)" },
+      { color: "grey", value: "rgb(0, 0, 0)" }, 
+    ];
+    let colorTable = colors.map((i) => {
+      return (
+        <tr>
+          <td>{i.color}</td>
+          <td>{i.value}</td>
+        </tr>
+      );
+    } )
     return (
-      <div>
-            <div
-                style={{background:`rgba(${rato},${hariyo},${nilo},${aleph})`}}
-          className={classes.colorDiv}
-        >{`${this.state.red},${this.state.green},${this.state.blue},${this.state.alpha}`}</div>
+      <div className={classes.mainDiv} style={{
+        background: `rgba(${rato},${hariyo},${nilo},${aleph})`,
+        color: `rgba(${255-rato},${255-hariyo},${255-nilo},${aleph})`
+      }}> 
+        <h1> Color Selector</h1>
         <div className={classes.sliderDiv}>
+          <form onSubmit={this.handleSubmit}>
           <input
             type={"range"}
             step={"1"}
@@ -39,7 +63,8 @@ class ColorSelector extends Component {
             className={classes.slider}
             onChange={this.handleChange}
           ></input>
-          <h5>Red:{this.state.red}</h5>
+          &emsp;
+          <label>Red:{this.state.red}</label>
           <input
             type={"range"}
             max={"255"}
@@ -49,7 +74,8 @@ class ColorSelector extends Component {
             className={classes.slider}
             onChange={this.handleChange}
           ></input>
-          <h5>Green:{this.state.green}</h5>
+          &emsp;
+          <label>Green:{this.state.green}</label>
           <input
             type={"range"}
             max={"255"}
@@ -59,7 +85,8 @@ class ColorSelector extends Component {
             className={classes.slider}
             onChange={this.handleChange}
           ></input>
-          <h5>Blue:{this.state.blue}</h5>
+          &emsp;
+          <label>Blue:{this.state.blue}</label>
           <input
             type={"range"}
             max={"1"}
@@ -69,8 +96,24 @@ class ColorSelector extends Component {
             className={classes.slider}
             onChange={this.handleChange}
           ></input>
-          <h5>Alpha:{this.state.alpha}</h5>
+          &emsp;
+          <label>Alpha:{this.state.alpha}</label><br/>
+            <button type="submit" style={{
+              color: "inherit",
+              backgroundColor: "inherit",
+              width: "80px",
+              height:"30px"
+            }}>Set</button>  
+          </form>
         </div>
+        <h4>Some Basic Color Value</h4>
+        <table>
+          <tr>
+            <th>Color</th>
+            <th>Values</th>
+          </tr>
+          {colorTable}
+        </table>
       </div>
     );
   }

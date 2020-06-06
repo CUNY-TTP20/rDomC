@@ -1,6 +1,42 @@
 .colorDiv{
-
+    position:relative;
+    width:100px;
+    height:100px;
+    text-align: center;
+    left:6.5vw;
+    border-style:ridge;
 }
-.sliderDiv{
 
+.sliderDiv{
+    padding-top:30px;
+    width:20vw;
+    height: 20vh;
+    position:relative;
+    text-align: center;
+    background-color: rgba(128,128,128,0.1);
+}
+.mainDiv{
+    /* padding-left: ; */
+    text-align: center;
+    padding-top:20px;
+    padding-bottom:20px;
+    position:relative;
+    height: max-content;
+    width:20vw;
+    display:inline-block;
+    border-style: ridge;
+    border-radius: 3%;
+}
+.mainDiv table{
+    position:relative;
+    left:4vw;
+}
+.mainDiv th,td{
+
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+.mainDiv tr:nth-child(odd){
+    background-color:rgba(128,128,128,0.1);
 }
