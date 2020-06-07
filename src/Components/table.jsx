@@ -46,17 +46,16 @@ class Table extends Component {
     }
     
     else if (this.props.Selective !== prevProps.Selective) {
-
-      changeColor(this.state.cr, this.state.cg, this.state.cb, this.state.ca);
+      selected_list.map((i) => {
+        i.style.backgroundColor = `rgba(${this.state.cr},${this.state.cg},${this.state.cb},${this.state.ca})`;
+      })
     }
     else {
       console.log("something");
     }
   }
   td_clicked(e) {
-    let id = e.target.id;
-    e.target.style.borderColor = "red";
-    selected_list.push(id);    
+    selected_list.push(e.target);    
     console.log(selected_list);
     e.target.removeEventListener("mouseleave", e.target.onMouseLeave);
   }
@@ -91,7 +90,7 @@ class Table extends Component {
                 onClick={this.td_clicked}
                 onMouseOver={this.weHover}
                 onMouseLeave={this.Leave}
-                id={ar}
+                refs={`tdname${ar}`}
                 style={{
                   backgroundColor: `rgba(${red},${green},${blue},${alpha})`,
                 }}
@@ -125,7 +124,7 @@ async function changeColor(red, green, blue, alpha) {
   console.log(red, green, blue, alpha);
   for (let i of selected_list) {
     if (document.getElementById(i) === null) {
-      setTimeout(200);
+      console.log("inside")
    
     } else {
       console.log(i)
