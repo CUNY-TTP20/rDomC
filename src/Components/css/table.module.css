@@ -2,10 +2,10 @@
   padding-top: 30px;
   padding-bottom: 20px;  
   height: 80vh;
-  width: 80vw;
+  width: 75vw;
   overflow: scroll;
   display: inline-block;
-  border-style: ridge;
+  /* border-style: ridge; */
   border-radius: 3%;
 }
 .Div table {
@@ -19,6 +19,7 @@
   height: 70px;
   border-style: ridge;
   text-align: left;
+  border-color: black;
   border-radius: 10%;  
    border-width: 5px;
 }

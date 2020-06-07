@@ -4,14 +4,16 @@ import ColorSelector from "./colorSelector";
 import classes from "./css/mainPanel.module.css";
 class MainPanel extends Component {
   state = {
-    Red: 255,
-    Green: 255,
+    Red: 55,
+    Green: 55,
     Blue: 255,
     Alpha: 1,
     Rows: 1,
     Columns: 1,
+    fillAll: false,
+    selective: false,
   };
-  addRows    = (event) => {
+  addRows = (event) => {
     this.setState({ Rows: this.state.Rows + 1 });
   };
   addColumns = (event) => {
@@ -22,15 +24,26 @@ class MainPanel extends Component {
   deleteRows = (event) => {
     if (this.state.Rows > 1) {
       this.setState((state) => ({ Rows: this.state.Rows - 1 }));
+    } else {
+      alert("need at least one row");
     }
   };
   deleteColumns = (event) => {
     if (this.state.Columns > 1) {
       this.setState((state) => ({ Columns: this.state.Columns - 1 }));
+    } else {
+      alert("need at least one column");
     }
-  };
+    };
+
   changeColors = (Red, Green, Blue, Alpha) => {
     this.setState({ Red: Red, Green: Green, Blue: Blue, Alpha: Alpha });
+  };
+    fillColor = (event) => {
+        console.log(this.state.fillAll);
+        console.log("clicked");
+      this.setState({ fillAll: !this.state.fillAll });
+     console.log("clicked");
   };
   render() {
     return (
@@ -54,9 +67,9 @@ class MainPanel extends Component {
 
           <button onClick={this.deleteRows}>Delete Rows</button>
 
-                <button onClick={this.deleteColumns}>Delete Columns</button>
-                <button onSubmit={this.changeColors}>Fill Color </button>
-                <button> Convert Selected</button>
+          <button onClick={this.deleteColumns}>Delete Columns</button>
+          <button onClick={this.fillColor}>Fill Color </button>
+          <button> Convert Selected</button>
         </div>
         <div className={classes.tableDiv}>
           <Table
@@ -65,12 +78,13 @@ class MainPanel extends Component {
             Red={this.state.Red}
             Green={this.state.Green}
             Blue={this.state.Blue}
-            Alpha={this.state.Alpha}
+                    Alpha={this.state.Alpha}
+                    fillAll={this.state.fillAll}
           />
         </div>
         <div className={classes.colorTable}>
           <ColorSelector
-            onSubmit={this.changeColors}
+            onChange={this.changeColors}
             Red={this.state.Red}
             Green={this.state.Green}
             Blue={this.state.Blue}

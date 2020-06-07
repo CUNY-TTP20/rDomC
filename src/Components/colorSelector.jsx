@@ -13,7 +13,7 @@ class ColorSelector extends Component {
   }
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.onSubmit(this.state.red,this.state.green,this.state.blue,this.state.alpha);
+    
   }
   handleChange = (event) => {
     const value = event.target.value;
@@ -21,6 +21,12 @@ class ColorSelector extends Component {
       ...this.state,
       [event.target.name]: value,
     });
+    this.props.onChange(
+      this.state.red,
+      this.state.green,
+      this.state.blue,
+      this.state.alpha
+    );
  
   };
   render() {
@@ -98,12 +104,6 @@ class ColorSelector extends Component {
           ></input>
           &emsp;
           <label>Alpha:{this.state.alpha}</label><br/>
-            <button type="submit" style={{
-              color: "inherit",
-              backgroundColor: "inherit",
-              width: "80px",
-              height:"30px"
-            }}>Set</button>  
           </form>
         </div>
         <h4>Some Basic Color Value</h4>
