@@ -13,7 +13,7 @@
   left: 4vw;
   background-color: white;
 }
-.tdName {
+.tdName td{
   position: relative;
   width: 70px;
   height: 70px;

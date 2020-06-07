@@ -11,11 +11,7 @@ class ColorSelector extends Component {
       alpha: this.props.Alpha,
     };
   }
-  handleSubmit = (event) => {
-    event.preventDefault();
-    
-  }
-  handleChange = (event) => {
+   handleChange = (event) => {
     const value = event.target.value;
     this.setState({
       ...this.state,

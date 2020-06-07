@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import classes from "./css/table.module.css";
+let iker = 0;
+let selected_list =[]
 class Table extends Component {
   constructor(props) {
     super(props);
@@ -11,46 +13,60 @@ class Table extends Component {
       blue: this.props.Blue,
       alpha: this.props.Alpha,
       fillAll: this.props.fb,
-      selective: false,
+      Selective: this.props.Selective,
       cr: "",
       cg: "",
       cb: "",
       ca: "",
     };
+    this.onMouseLeave = this.onMouseLeave.bind(this);
   }
   componentWillReceiveProps(nextProps) {
     this.setState({
       row: nextProps.Rows,
       column: nextProps.Columns,
-      selective: nextProps.selective,
+      Selective: nextProps.Selective,
       cr: nextProps.Red,
       cg: nextProps.Green,
       cb: nextProps.Blue,
       ca: nextProps.Alpha,
       fillAll: nextProps.fb,
-      selective: nextProps.selective,
+      
     });
   }
   componentDidUpdate(prevProps, prevState) {
     if (this.props.fillAll !== prevProps.fillAll) {
-      console.log("aaaaaaaaaaaaaaaaaaa");
+      // console.log("aaaaaaaaaaaaaaaaaaa");
       this.setState({
         red: this.state.cr,
         green: this.state.cg,
         blue: this.state.cb,
         alpha: this.state.ca,
       });
-    } else {
-      console.log("bbbbbb");
-
     }
+    
+    else if (this.props.Selective !== prevProps.Selective) {
+
+      changeColor(this.state.cr, this.state.cg, this.state.cb, this.state.ca);
+    }
+    else {
+      console.log("something");
+    }
+  }
+  td_clicked(e) {
+    let id = e.target.id;
+    e.target.style.borderColor = "red";
+    selected_list.push(id);    
+    console.log(selected_list);
+    e.target.removeEventListener("mouseleave", e.target.onMouseLeave);
   }
   weHover(e) {
     e.target.style.width = "80px";
     e.target.style.borderColor = "blue";
     e.target.style.height = "80px";
+    e.target.addEventListener("mouseleave", e.target.onMouseLeave);
   }
-  Leave(e) {
+  onMouseLeave(e) {
     e.target.style.borderColor = "black";
     e.target.style.width = "70px";
     e.target.style.height = "70px";
@@ -63,25 +79,25 @@ class Table extends Component {
     let alpha = this.state.alpha;
     let rows = this.state.row;
     let columns = this.state.column;
-    let column_td = range(0, columns).map((i) => {
-      return (
-        <td
-          onMouseOver={this.weHover}
-          onMouseLeave={this.Leave}
-          id={get_random_integer(200)}
-          className={classes.tdName}
-        ></td>
-      );
-    });
     let row_tr = range(0, rows).map((i) => {
       return (
         <tr
-          id={i}
-          style={{
-            backgroundColor: `rgba(${red},${green},${blue},${alpha})`,
-          }}
+          className={classes.tdName}
         >
-          {column_td}
+          {range(0, columns).map((i) => {
+            let ar = iker++;
+            return (
+              <td
+                onClick={this.td_clicked}
+                onMouseOver={this.weHover}
+                onMouseLeave={this.Leave}
+                id={ar}
+                style={{
+                  backgroundColor: `rgba(${red},${green},${blue},${alpha})`,
+                }}
+              ></td>
+            );
+          })}
         </tr>
       );
     });
@@ -104,5 +120,17 @@ function range(start, end) {
     foo.push(i);
   }
   return foo;
+}
+async function changeColor(red, green, blue, alpha) {
+  console.log(red, green, blue, alpha);
+  for (let i of selected_list) {
+    if (document.getElementById(i) === null) {
+      setTimeout(200);
+   
+    } else {
+      console.log(i)
+    }  
+
+  }
 }
 export default Table;

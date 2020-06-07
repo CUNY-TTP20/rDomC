@@ -11,7 +11,7 @@ class MainPanel extends Component {
     Rows: 1,
     Columns: 1,
     fillAll: false,
-    selective: false,
+    Selective: false,
   };
   addRows = (event) => {
     this.setState({ Rows: this.state.Rows + 1 });
@@ -35,7 +35,9 @@ class MainPanel extends Component {
       alert("need at least one column");
     }
     };
-
+    convertSelected = (e) => {
+        this.setState({ Selective: !this.state.Selective });
+    }
   changeColors = (Red, Green, Blue, Alpha) => {
     this.setState({ Red: Red, Green: Green, Blue: Blue, Alpha: Alpha });
   };
@@ -69,17 +71,18 @@ class MainPanel extends Component {
 
           <button onClick={this.deleteColumns}>Delete Columns</button>
           <button onClick={this.fillColor}>Fill Color </button>
-          <button> Convert Selected</button>
+                <button onClick={this.convertSelected}> Convert Selected</button>
         </div>
         <div className={classes.tableDiv}>
           <Table
-            Rows={this.state.Rows}
-            Columns={this.state.Columns}
-            Red={this.state.Red}
-            Green={this.state.Green}
-            Blue={this.state.Blue}
+                    Rows={this.state.Rows}
+                    Columns={this.state.Columns}
+                    Red={this.state.Red}
+                    Green={this.state.Green}
+                    Blue={this.state.Blue}
                     Alpha={this.state.Alpha}
                     fillAll={this.state.fillAll}
+                    Selective={this.state.Selective}
           />
         </div>
         <div className={classes.colorTable}>
@@ -88,7 +91,8 @@ class MainPanel extends Component {
             Red={this.state.Red}
             Green={this.state.Green}
             Blue={this.state.Blue}
-            Alpha={this.state.Alpha}
+                    Alpha={this.state.Alpha}
+                
           />
         </div>
       </div>
