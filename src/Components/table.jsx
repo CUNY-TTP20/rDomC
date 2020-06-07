@@ -49,6 +49,7 @@ class Table extends Component {
       selected_list.map((i) => {
         i.style.backgroundColor = `rgba(${this.state.cr},${this.state.cg},${this.state.cb},${this.state.ca})`;
       })
+      selected_list=[]
     }
     else {
       console.log("something");
