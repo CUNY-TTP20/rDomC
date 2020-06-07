@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import classes from "./css/table.module.css";
 let iker = 0;
-let selected_list =[]
+let selected_list = [];
 class Table extends Component {
   constructor(props) {
     super(props);
@@ -20,6 +20,7 @@ class Table extends Component {
       ca: "",
     };
     this.onMouseLeave = this.onMouseLeave.bind(this);
+    this.td_clicked = this.td_clicked.bind(this);
   }
   componentWillReceiveProps(nextProps) {
     this.setState({
@@ -31,7 +32,6 @@ class Table extends Component {
       cb: nextProps.Blue,
       ca: nextProps.Alpha,
       fillAll: nextProps.fb,
-      
     });
   }
   componentDidUpdate(prevProps, prevState) {
@@ -43,21 +43,19 @@ class Table extends Component {
         blue: this.state.cb,
         alpha: this.state.ca,
       });
-    }
-    
-    else if (this.props.Selective !== prevProps.Selective) {
+    } else if (this.props.Selective !== prevProps.Selective) {
       selected_list.map((i) => {
         i.style.backgroundColor = `rgba(${this.state.cr},${this.state.cg},${this.state.cb},${this.state.ca})`;
-      })
-      selected_list=[]
-    }
-    else {
+      });
+      selected_list = [];
+    } else {
       console.log("something");
     }
   }
   td_clicked(e) {
-    selected_list.push(e.target);    
+    selected_list.push(e.target);
     console.log(selected_list);
+    e.target.style.backgroundColor = `rgba(${this.state.cr},${this.state.cg},${this.state.cb},${this.state.ca})`;
     e.target.removeEventListener("mouseleave", e.target.onMouseLeave);
   }
   weHover(e) {
@@ -81,9 +79,7 @@ class Table extends Component {
     let columns = this.state.column;
     let row_tr = range(0, rows).map((i) => {
       return (
-        <tr
-          className={classes.tdName}
-        >
+        <tr className={classes.tdName}>
           {range(0, columns).map((i) => {
             let ar = iker++;
             return (
@@ -125,12 +121,10 @@ async function changeColor(red, green, blue, alpha) {
   console.log(red, green, blue, alpha);
   for (let i of selected_list) {
     if (document.getElementById(i) === null) {
-      console.log("inside")
-   
+      console.log("inside");
     } else {
-      console.log(i)
-    }  
-
+      console.log(i);
+    }
   }
 }
 export default Table;
